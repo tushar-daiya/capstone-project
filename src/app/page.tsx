@@ -1,6 +1,7 @@
 import { ArrowRight, File, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
             <Sparkles /> For final year students
           </Badge>
           <div className="text-6xl font-bold mt-5">
-            <h1>Create Your Biodata.</h1>
+            <h1>Create Your Compilo.</h1>
             <h1 className="mt-2">Build Your Portfolio.</h1>
             <h1 className="text-primary mt-2">In Minutes</h1>
           </div>
@@ -21,8 +22,13 @@ export default function Home() {
             experience, and projects.
           </p>
           <div className="flex gap-5 max-w-xl mx-auto mt-10">
-            <Button className="flex flex-1 text-lg font-bold py-6 items-center justify-center gap-5">
-              Try without signup <ArrowRight />
+            <Button
+              asChild
+              className="flex flex-1 text-lg font-bold py-6 items-center justify-center gap-5"
+            >
+              <Link href={"/create-biodata"}>
+                Try without signup <ArrowRight />
+              </Link>
             </Button>
             <Button
               variant={"outline"}
