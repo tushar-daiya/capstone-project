@@ -10,7 +10,7 @@ type ResumeStore = {
 
 export const useUserResumeStore = create<ResumeStore>()(
   persist(
-    (set,get)=>({
+    (set)=>({
       userData: {
         personalInfo: {
           name: "",

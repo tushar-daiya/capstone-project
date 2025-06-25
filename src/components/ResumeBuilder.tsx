@@ -5,10 +5,7 @@ import { Input } from "./ui/input";
 import { useUserResumeStore } from "@/store/userResumeStore";
 import { Button } from "./ui/button";
 import {
-  BluetoothConnectedIcon,
-  Cross,
   Delete,
-  Pen,
   Pencil,
   Plus,
   X,
@@ -43,7 +40,7 @@ export default function ResumeBuilder() {
       </div>
       <div className="w-full">
         <Tabs defaultValue="personalInfo" className="w-full">
-          <TabsList>
+          <TabsList className="">
             {tabs.map((tab) => (
               <TabsTrigger key={tab.value} value={tab.value}>
                 {tab.label}

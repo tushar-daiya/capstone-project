@@ -2,25 +2,34 @@
 import {
   Document,
   Font,
-  Image,
+  Image as PDFImage,
   Page,
   StyleSheet,
   Text,
   View,
   Link,
 } from "@react-pdf/renderer";
-import { PDFDownloadLink, PDFViewer } from "./index";
+import type { PDFViewer as PDFViewerType } from "@react-pdf/renderer";
+import type { PDFDownloadLink as PDFDownloadLinkType } from "@react-pdf/renderer";
 import { icons } from "../icons";
 import { generateAchievement } from "@/lib/lib";
 import { useUserResumeStore } from "@/store/userResumeStore";
 import { useDebounce } from "@/lib/hooks";
-import { memo, useMemo } from "react";
+import { memo, useEffect, useState } from "react";
 import { Resume } from "@/lib/types";
 import { Button } from "../ui/button";
 
 export const PDFPreviewer = () => {
+  const [PDFViewer, setPDFViewer] = useState<typeof PDFViewerType | null>(null);
+
+  useEffect(() => {
+    import("@react-pdf/renderer").then((mod) => {
+      setPDFViewer(() => mod.PDFViewer);
+    });
+  }, []);
   const userData = useUserResumeStore((state) => state.userData);
   const debouncedData = useDebounce(userData, 500);
+  if (!PDFViewer) return null;
   return (
     <PDFViewer
       key={JSON.stringify(debouncedData)}
@@ -33,7 +42,7 @@ export const PDFPreviewer = () => {
   );
 };
 
-const PDFDoc = memo(({ userData }: { userData: Resume }) => (
+const PDFDocComponnet = ({ userData }: { userData: Resume }) => (
   <Document>
     <Page size="A4" style={styles.page}>
       <Text style={styles.userName}>{userData.personalInfo.name}</Text>
@@ -50,7 +59,7 @@ const PDFDoc = memo(({ userData }: { userData: Resume }) => (
               gap: 4,
             }}
           >
-            <Image
+            <PDFImage
               src={icons.Email}
               style={{ width: 11, height: 11, marginTop: 3 }}
             />
@@ -69,7 +78,7 @@ const PDFDoc = memo(({ userData }: { userData: Resume }) => (
               justifyContent: "center",
             }}
           >
-            <Image
+            <PDFImage
               src={icons.Location}
               style={{ width: 11, height: 11, marginTop: 3 }}
             />
@@ -88,7 +97,7 @@ const PDFDoc = memo(({ userData }: { userData: Resume }) => (
               justifyContent: "center",
             }}
           >
-            <Image
+            <PDFImage
               src={icons.Phone}
               style={{ width: 11, height: 11, marginTop: 3 }}
             />
@@ -107,7 +116,7 @@ const PDFDoc = memo(({ userData }: { userData: Resume }) => (
               justifyContent: "center",
             }}
           >
-            <Image
+            <PDFImage
               src={icons.Website}
               style={{ width: 11, height: 11, marginTop: 3 }}
             />
@@ -133,7 +142,7 @@ const PDFDoc = memo(({ userData }: { userData: Resume }) => (
               justifyContent: "center",
             }}
           >
-            <Image
+            <PDFImage
               src={icons.LinkedIn}
               style={{ width: 11, height: 11, marginTop: 3 }}
             />
@@ -156,7 +165,7 @@ const PDFDoc = memo(({ userData }: { userData: Resume }) => (
               justifyContent: "center",
             }}
           >
-            <Image
+            <PDFImage
               src={icons.GitHub}
               style={{ width: 11, height: 11, marginTop: 3 }}
             />
@@ -341,7 +350,10 @@ const PDFDoc = memo(({ userData }: { userData: Resume }) => (
       )}
     </Page>
   </Document>
-));
+);
+const PDFDoc = memo(PDFDocComponnet);
+PDFDoc.displayName = "PDFDoc";
+
 Font.registerHyphenationCallback((word) => [word]);
 Font.register({
   family: "New Computer Modern",
@@ -391,13 +403,24 @@ const styles = StyleSheet.create({
 export function PDFDownloadButton() {
   const userData = useUserResumeStore((state) => state.userData);
   const debouncedData = useDebounce(userData, 500);
+  const [PDFDownloadLink, setPDFDownloadLink] = useState<
+    typeof PDFDownloadLinkType | null
+  >(null);
+
+  useEffect(() => {
+    import("@react-pdf/renderer").then((mod) => {
+      setPDFDownloadLink(() => mod.PDFDownloadLink);
+    });
+  }, []);
+
+  if (!PDFDownloadLink) return null;
   return (
     <Button asChild>
       <PDFDownloadLink
         document={<PDFDoc userData={debouncedData} />}
         fileName="resume.pdf"
       >
-        {({ loading }) =>
+        {({ loading }: { loading: boolean }) =>
           loading ? (
             <button disabled>Loading PDF...</button>
           ) : (

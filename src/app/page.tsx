@@ -7,16 +7,16 @@ export default function Home() {
   return (
     <div>
       <section className="bg-gradient-to-br from-blue-50 via-white to-blue-100">
-        <div className="max-w-4xl mx-auto text-center py-40">
+        <div className="max-w-4xl px-8 mx-auto text-center py-40">
           <Badge>
             <Sparkles /> For final year students
           </Badge>
-          <div className="text-6xl font-bold mt-5">
+          <div className="lg:text-6xl md:text-4xl text-3xl font-bold mt-5">
             <h1>Create Your Compilo.</h1>
             <h1 className="mt-2">Build Your Portfolio.</h1>
             <h1 className="text-primary mt-2">In Minutes</h1>
           </div>
-          <p className="mt-8 text-lg">
+          <p className="md:mt-8 mt-4 md:text-lg">
             Compilo helps students generate professional PDF biodata and
             personalized portfolios like name.compilo.com to showcase education,
             experience, and projects.
@@ -30,78 +30,82 @@ export default function Home() {
                 Try without signup <ArrowRight />
               </Link>
             </Button>
-            <Button
+            {/* <Button
               variant={"outline"}
               className="flex flex-1 text-lg font-bold py-6 items-center justify-center gap-5"
             >
               Claim your compilo
-            </Button>
+            </Button> */}
           </div>
         </div>
       </section>
-      <section className="py-20 text-center">
-        <h2 className="text-4xl font-bold">Everything You Need to Stand Out</h2>
-        <p className="mt-4 text-lg">
+      <section className="py-20 text-center px-8">
+        <h2 className="md:text-4xl text-2xl font-bold">
+          Everything You Need to Stand Out
+        </h2>
+        <p className="md:mt-4 mt-2 md:text-lg text-sm">
           Professional tools designed specifically for students entering the job
-          <br /> market
+          <br className="hidden md:block" /> market
         </p>
-        <div className="max-w-6xl mt-10 grid grid-cols-4 gap-10 mx-auto">
-          <div className="rounded-lg px-4 py-6 flex flex-col items-center border">
+        <div className="max-w-6xl mt-10 grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 lg:gap-10 md:gap-6 gap-4 mx-auto">
+          <div className="rounded-lg md:px-4 md:py-6 px-2 py-3 flex flex-col items-center border">
             <div className="p-3 rounded-lg w-max bg-primary/20 hover:bg-primary/50 text-primary hover:text-white hover:shadow-2xl transition-all">
               <File />
             </div>
-            <p className="mt-3 font-bold text-lg">
+            <p className="mt-3 font-bold md:text-lg">
               Export Professional BioData
             </p>
-            <p className="mt-2 font-medium text-muted-foreground">
+            <p className="mt-2 font-medium md:text-base text-sm text-muted-foreground">
               Generate clean, ATS-friendly PDF biodata with professional
               formatting and layouts.
             </p>
           </div>
-          <div className="rounded-lg px-4 py-6 flex flex-col items-center border">
+          <div className="rounded-lg md:px-4 md:py-6 px-2 py-3 flex flex-col items-center border">
             <div className="p-3 rounded-lg w-max bg-primary/20 hover:bg-primary/50 text-primary hover:text-white hover:shadow-2xl transition-all">
               <File />
             </div>
-            <p className="mt-3 font-bold text-lg">
+            <p className="mt-3 font-bold md:text-lg">
               Export Professional BioData
             </p>
-            <p className="mt-2 font-medium text-muted-foreground">
+            <p className="mt-2 font-medium md:text-base text-sm text-muted-foreground">
               Generate clean, ATS-friendly PDF biodata with professional
               formatting and layouts.
             </p>
           </div>
-          <div className="rounded-lg px-4 py-6 flex flex-col items-center border">
+          <div className="rounded-lg md:px-4 md:py-6 px-2 py-3 flex flex-col items-center border">
             <div className="p-3 rounded-lg w-max bg-primary/20 hover:bg-primary/50 text-primary hover:text-white hover:shadow-2xl transition-all">
               <File />
             </div>
-            <p className="mt-3 font-bold text-lg">
+            <p className="mt-3 font-bold md:text-lg">
               Export Professional BioData
             </p>
-            <p className="mt-2 font-medium text-muted-foreground">
+            <p className="mt-2 font-medium md:text-base text-sm text-muted-foreground">
               Generate clean, ATS-friendly PDF biodata with professional
               formatting and layouts.
             </p>
           </div>
-          <div className="rounded-lg px-4 py-6 flex flex-col items-center border">
+          <div className="rounded-lg md:px-4 md:py-6 px-2 py-3 flex flex-col items-center border">
             <div className="p-3 rounded-lg w-max bg-primary/20 hover:bg-primary/50 text-primary hover:text-white hover:shadow-2xl transition-all">
               <File />
             </div>
-            <p className="mt-3 font-bold text-lg">
+            <p className="mt-3 font-bold md:text-lg">
               Export Professional BioData
             </p>
-            <p className="mt-2 font-medium text-muted-foreground">
+            <p className="mt-2 font-medium md:text-base text-sm text-muted-foreground">
               Generate clean, ATS-friendly PDF biodata with professional
               formatting and layouts.
             </p>
           </div>
         </div>
       </section>
-      <section className="py-20 text-center">
-        <h2 className="text-4xl font-bold">See Compilo in Action</h2>
-        <p className="mt-4 text-lg">
+      <section className="py-20 text-center px-8">
+        <h2 className="md:text-4xl text-2xl font-bold">
+          See Compilo in Action
+        </h2>
+        <p className="md:mt-4 mt-2 md:text-lg text-sm">
           Professional biodata and portfolio examples created with Compilo
         </p>
-        <div className="mt-10 grid grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+        <div className="md:mt-10 mt-5 grid md:grid-cols-2 grid-cols-1 gap-12 items-center max-w-7xl mx-auto">
           <div className="relative">
             <div className="bg-white rounded-lg shadow-2xl p-8 transform rotate-2 hover:rotate-0 transition-transform duration-300">
               <div className="h-96 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center">
@@ -147,7 +151,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="text-center py-10 bg-accent">
+      <section className="text-center py-10 bg-accent px-8">
         © 2024 Compilo. All rights reserved. Built for students, by students.
       </section>
     </div>
